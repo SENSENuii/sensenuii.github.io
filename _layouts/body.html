@@ -2,16 +2,10 @@
 layout: base
 ---
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+    {% if page.layout == 'home' %}
         {% include header.html %}
-        <!-- Main -->
-        <div id="main">
-            <div class="inner">
-                {{ content }}
-            </div>
-        </div>
-        {% include footer.html %}
-    </div>
+    {% endif %}
 
-    {% include menu.html %}
+    {{ content }}
+
+    {% include footer.html %}

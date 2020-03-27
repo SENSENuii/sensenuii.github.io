@@ -1,15 +1,27 @@
 /*
-	Phantom by Pixelarity
+	Fractal by Pixelarity
 	pixelarity.com | hello@pixelarity.com
 	License: pixelarity.com/license
 */
 
-/* Tiles */
+/* Header */
 
-	body.is-preload .tiles article {
+	body.is-preload #header .content {
 		-moz-transform: none;
 		-webkit-transform: none;
 		-ms-transform: none;
 		transform: none;
 		opacity: 1;
 	}
+
+	body.is-preload #header .image {
+		-moz-transform: none;
+		-webkit-transform: none;
+		-ms-transform: none;
+		transform: none;
+		opacity: 1;
+	}
+
+		body.is-preload #header .image img {
+			opacity: 1;
+		}

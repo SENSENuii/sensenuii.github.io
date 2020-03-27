@@ -6,18 +6,27 @@
 @import 'libs/html-grid';
 
 /*
-	Phantom by Pixelarity
+	Fractal by Pixelarity
 	pixelarity.com | hello@pixelarity.com
 	License: pixelarity.com/license
 */
 
-/* Tiles */
+/* Header */
 
-	.tiles {
+	#header {
 		body.is-preload & {
-			article {
+			.content {
 				@include vendor('transform', 'none');
 				opacity: 1;
+			}
+
+			.image {
+				@include vendor('transform', 'none');
+				opacity: 1;
+
+				img {
+					opacity: 1;
+				}
 			}
 		}
 	}

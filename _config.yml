@@ -1,10 +1,20 @@
-title: Phantom
+title: Fractal
 baseurl: /
 permalink: '/:title/'
 collections:
   posts:
     permalink: '/posts/:title/'
-none: ''
+palette: blue
+palettes:
+  blue:
+    sass:
+      color: '#4696e5'
+  magenta:
+    sass:
+      color: '#db5c7a'
+  purple:
+    sass:
+      color: '#786dc2'
 sass:
   indentWidth: 4
   style: nested

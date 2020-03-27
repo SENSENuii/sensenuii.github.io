@@ -1,8 +1,8 @@
-# Phantom
+# Fractal
 
-A multipage theme with posts for Stackbit. [Live Demo](https://themes.stackbit.com/demos/phantom)
+A single page mobile application marketing theme for Stackbit. [Live Demo](https://themes.stackbit.com/demos/fractal/blue)
 
-[![Create with Stackbit](https://assets.stackbit.com/badge/create-with-stackbit.svg)](https://app.stackbit.com/create?theme=https://github.com/stackbithq/stackbit-theme-phantom)
+[![Create with Stackbit](https://assets.stackbit.com/badge/create-with-stackbit.svg)](https://app.stackbit.com/create?theme=https://github.com/stackbithq/stackbit-theme-fractal)
 
 ### Turn themes into CMS-powered websites
 
@@ -38,4 +38,4 @@ unibit build
 
 Develop this theme in the browser using CodeSandbox.
 
-[Fork in CodeSandbox](https://codesandbox.io/s/github/stackbithq/stackbit-theme-phantom)
+[Fork in CodeSandbox](https://codesandbox.io/s/github/stackbithq/stackbit-theme-fractal)

@@ -9,18 +9,28 @@ dataDir: _data
 pagesDir: ''
 pageLayoutKey: layout
 metadata:
-  title: Phantom
-  description: a multipage theme with posts
+  title: Fractal
+  description: a single page mobile application marketing theme
   author: Pixelarity
   authorURL: 'https://pixelarity.com'
-  images:
-    small: images/demo-256x192.png
-    large: images/demo-1024x768.png
+  palettes:
+    blue:
+      images:
+        small: images/demo-blue-256x192.png
+        large: images/demo-blue-1024x768.png
+    magenta:
+      images:
+        small: images/demo-magenta-256x192.png
+        large: images/demo-magenta-1024x768.png
+    purple:
+      images:
+        small: images/demo-purple-256x192.png
+        large: images/demo-purple-1024x768.png
 stackbit_banner:
   show_banner: true
-  name: Phantom
-  create_url: 'https://app.stackbit.com/create?theme=phantom'
-  github_url: 'https://github.com/stackbithq/stackbit-theme-phantom'
+  name: Fractal
+  create_url: 'https://app.stackbit.com/create?theme=fractal'
+  github_url: 'https://github.com/stackbithq/stackbit-theme-fractal'
 models:
   config:
     type: config
@@ -42,12 +52,29 @@ models:
         description: 'The output path for your pages, posts, or collections.'
         default: '/posts/:slug:output_ext'
         hidden: true
-      - type: string
-        name: none
-        label: None
-        default: ''
+      - type: enum
+        name: palette
+        label: Color Palette
+        options:
+          - blue
+          - magenta
+          - purple
+        required: true
+        description: The color palette used in the theme
+      - type: object
+        name: palettes
+        label: Palettes
         hidden: true
-        description: There are no config params
+        fields:
+          - type: palette
+            name: blue
+            label: Blue
+          - type: palette
+            name: magenta
+            label: Magenta
+          - type: palette
+            name: purple
+            label: Purple
       - type: object
         name: sass
         label: Sass
@@ -91,39 +118,41 @@ models:
     file: header.yml
     label: Header Configuration
     fields:
-      - type: image
-        name: logo_img_src
-        label: Header Logo
-        description: The logo displayed On the upper left side of the page header
-  contact:
-    type: data
-    file: contact.yml
-    label: Contact Configuration
-    fields:
-      - type: boolean
-        name: enabled
-        label: Enabled
-        default: false
-        description: Displays the section in the site footer
       - type: string
-        name: title
-        label: Section Title
-  social:
-    type: data
-    file: social.yml
-    label: Social Configuration
-    fields:
-      - type: boolean
-        name: enabled
-        label: Enabled
-        default: false
-      - type: string
-        name: title
-        label: Section Title
+        name: title_url
+        label: Title URL
+        widget: url
+        description: The link used in the page title
+      - type: markdown
+        name: subtitle
+        label: Header Subtitle
+        description: The text displayed below the page title
       - type: list
-        name: follow_section
+        name: actions
+        label: Header Actions
+        description: The action buttons displayed in the page header
+        items:
+          type: action
+      - type: object
+        name: img
+        label: Header Image
+        fields:
+          - type: image
+            name: path
+            label: Image
+          - type: boolean
+            name: phone_border
+            label: Header Image Phone Border
+            default: false
+            description: Puts a phone border around the header image
+  footer:
+    type: data
+    file: footer.yml
+    label: Footer Configuration
+    fields:
+      - type: list
+        name: social_icons
         label: Social Media Icons
-        description: A list of social media icons
         items:
           type: object
           labelField: title
@@ -135,21 +164,15 @@ models:
             - type: string
               name: icon
               label: Icon
-              required: true
               description: Font Awesome Icon
             - type: string
-              name: link_url
-              label: URL
+              name: url
+              label: Icon URL
               widget: url
-  footer:
-    type: data
-    file: footer.yml
-    label: Footer Configuration
-    fields:
       - type: string
         name: copyright
         label: Footer Copyright
-        description: The copyright text displayed at the bottom of the site.
+        description: The copyright text displayed in the page footer.
       - type: list
         name: links
         label: Links
@@ -172,168 +195,199 @@ models:
   home:
     type: page
     label: Home
+    hideContent: true
     singleInstance: true
-    template: home
     file: index.md
+    template: home
     fields:
       - type: string
         name: title
         label: Page Title
-        required: true
-      - type: text
-        name: header
-        label: Page Header
-        description: The bold text displayed at the top of the page
-      - type: page_menus
-        name: menus
-        label: Home Menus
-        description: Which menus should this page show up in
-  page:
+      - type: list
+        name: sections
+        label: Sections
+        description: Home sections
+        items:
+          type: reference
+          labelField: title
+          models:
+            - icons
+            - spotlights
+            - cta
+  elements:
     type: page
-    label: Page
-    template: page
-    exclude: _posts/**
+    label: Elements
+    template: elements
+    singleInstance: true
+    file: elements.md
+    hideContent: true
     fields:
       - type: string
         name: title
         label: Page Title
         required: true
-      - type: image
-        name: img_src
-        label: Content Image
-        description: The Image displayed in the content section of the page
-      - type: page_menus
-        name: menus
-        label: Page Menus
-        description: Which menus should this page show up in
-  post:
-    type: page
-    label: Post
-    template: page
-    folder: _posts
+  action:
+    type: object
+    label: Action
+    labelField: label
+    fields:
+      - type: string
+        name: label
+        label: Button Label
+      - type: string
+        name: icon
+        label: Button Icon
+        description: Font Awesome Icon
+      - type: string
+        name: url
+        label: Button URL
+        widget: url
+      - type: boolean
+        name: is_primary
+        label: Is Primary
+        default: false
+        description: Gives the button a primary color scheme
+      - type: boolean
+        name: is_scrolly
+        label: Is Scrolly
+        default: false
+        description: adds a scroll animation (enable if button URL is set to a section ID)
+  section:
+    type: object
+    label: Section
+    labelField: title
     fields:
       - type: string
         name: title
-        label: Page Title
+        label: Section Title
         required: true
+        description: >-
+          The title displayed at the top of the section (Also used by the CMS,
+          even if no title is displayed in the section)
+      - type: string
+        name: section_id
+        label: Section ID
+        required: true
+      - type: string
+        name: component
+        label: Section Component
+        required: true
+        hidden: true
+  icons:
+    type: object
+    label: Icons Section
+    extends:
+      - section
+    fields:
+      - name: title
+        default: Icons Section
+      - name: section_id
+        default: one
+      - name: component
+        const: icons.html
       - type: enum
-        name: home_style
-        label: Home Thumbnail Style
+        name: background_style
+        label: Background Style
         options:
           - style1
           - style2
           - style3
           - style4
-          - style5
-          - style6
-          - style7
         required: true
-        description: The style used for the home thumbnail
-      - type: image
-        name: home_img
-        label: Home Thumbnail Image
-        description: The Image displayed in the home thumbnail on hover
-      - type: markdown
-        name: excerpt
-        label: Excerpt
-        description: The text displayed in the home thumbnail on hover
-      - type: date
-        name: date
-        label: Post Date
-        required: true
-      - type: image
-        name: img_src
-        label: Content Image
-        description: The Image displayed in the content section of the page
-      - type: page_menus
-        name: menus
-        label: Post Menus
-        description: Which menus should this page show up in
-  elements:
-    type: page
-    label: Elements
-    hideContent: true
-    singleInstance: true
-    template: elements
-    file: elements.md
-    fields:
-      - type: string
-        name: title
-        label: Page Title
-        required: true
-      - type: page_menus
-        name: menus
-        label: Elements Menus
-        description: Which menus should this page show up in
-  site_menus:
-    type: data
-    file: menus.yml
-    label: Site Menus
-    labelField: null
-    description: >-
-      Site menus model, defines list of menus that can be specified from within
-      site configuration
-    fields:
+        description: The color style for the background
       - type: list
-        name: main
-        label: Main menu
-        description: List of items for Main menu
+        name: icons
+        label: Icons
+        description: Icons displayed at the bottom of the section
         items:
-          type: site_menu_item
-  site_menu_item:
+          type: icon
+  spotlights:
     type: object
-    label: Site Menu Item
-    labelField: title
-    description: 'Site menu item model, defines fields for a single site menu item'
+    label: Spotlights Section
+    extends:
+      - section
     fields:
-      - type: string
-        name: identifier
-        label: Identifier
-        description: >-
-          The identifier of a menu item could be used as a parent menu of
-          another menu item
+      - name: title
+        default: Spotlights Section
+      - name: section_id
+        default: two
+      - name: component
+        const: spotlights.html
+      - type: list
+        name: spotlights
+        label: Spotlight Sections
+        items:
+          type: object
+          labelField: title
+          fields:
+            - type: string
+              name: title
+              label: Spotlight Title
+              required: true
+            - type: markdown
+              name: text
+              label: Spotlight Text
+              description: The text displayed below the spotlight title
+            - type: image
+              name: image
+              label: Spotlight Image
+      - type: list
+        name: icons
+        label: Icons
+        description: Icons displayed at the bottom of the section
+        items:
+          type: icon
+  cta:
+    type: object
+    label: CTA Section
+    extends:
+      - section
+    fields:
+      - name: title
+        default: CTA Section
+      - name: section_id
+        default: three
+      - name: component
+        const: cta.html
+      - type: markdown
+        name: subtitle
+        label: Section Subtitle
+        description: The text displayed below the section title
+      - type: enum
+        name: background_style
+        label: Background Style
+        options:
+          - style1
+          - style2
+          - style3
+          - style4
         required: true
+        description: The color style for the background
+      - type: list
+        name: actions
+        label: CTA Action Buttons
+        items:
+          type: action
+  icon:
+    type: object
+    label: Icon
+    labelField: title
+    fields:
       - type: string
         name: title
-        label: Title
-        description: The title of the menu item
-        required: true
+        label: Icon Title
       - type: string
-        name: url
-        label: URL
-        description: The URL the menu item links to
-        required: true
-      - type: number
-        name: weight
-        label: Weight
-        description: Position for sorting
-  page_menus:
+        name: icon
+        label: Icon
+        description: Font Awesome Icon
+  palette:
     type: object
-    label: Page Menus
-    labelField: null
-    description: 'Page menus model, defines menus that can be specified from within pages'
+    label: Palette
     fields:
-      - type: page_menu_item
-        name: main
-        label: Main menu item
-        description: Main menu item for this page
-  page_menu_item:
-    type: object
-    label: Page Menu Item
-    labelField: title
-    description: 'Page menu item model, defines fields for a single page menu item'
-    fields:
-      - type: string
-        name: title
-        label: Title
-        description: The title of the menu item
-      - type: number
-        name: weight
-        label: Weight
-        description: Position for sorting
-      - type: string
-        name: identifier
-        label: Identifier
-        description: >-
-          The identifier of a menu item could be used as a parent menu of
-          another menu item
+      - type: object
+        name: sass
+        label: SASS
+        fields:
+          - type: color
+            name: color
+            label: Color
