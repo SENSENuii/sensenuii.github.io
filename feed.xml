@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Wild Linkle</title>
-    <link href="https://github.com/SENSENuii/sensenuii.github.io/feed.xml" rel="self" />
-    <link href="https://github.com/SENSENuii/sensenuii.github.io" />
+    <link href="https://sensenuii.github.io/feed.xml" rel="self" />
+    <link href="https://sensenuii.github.io" />
     <updated>1969-12-31T18:00:00-06:00</updated>
     <author>
         <name>Sen Uii</name>
     </author>
-    <id>https://github.com/SENSENuii/sensenuii.github.io</id>
+    <id>https://sensenuii.github.io</id>
 
 </feed>

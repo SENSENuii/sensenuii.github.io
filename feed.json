@@ -2,8 +2,8 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "Wild Linkle",
     "description": "",
-    "home_page_url": "https://github.com/SENSENuii/sensenuii.github.io",
-    "feed_url": "https://github.com/SENSENuii/sensenuii.github.io/feed.json",
+    "home_page_url": "https://sensenuii.github.io",
+    "feed_url": "https://sensenuii.github.io/feed.json",
     "user_comment": "",
     "author": {
         "name": "Sen Uii"
