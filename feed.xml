@@ -3,10 +3,32 @@
     <title>Wild Linkle</title>
     <link href="https://sensenuii.github.io/feed.xml" rel="self" />
     <link href="https://sensenuii.github.io" />
-    <updated>1969-12-31T18:00:00-06:00</updated>
+    <updated>2020-03-30T17:36:15-05:00</updated>
     <author>
         <name>Sen Uii</name>
     </author>
     <id>https://sensenuii.github.io</id>
 
+    <entry>
+        <title>Test Post</title>
+        <author>
+            <name>Sen Uii</name>
+        </author>
+        <link href="https://sensenuii.github.io/test-post.html"/>
+        <id>https://sensenuii.github.io/test-post.html</id>
+
+        <updated>2020-03-30T17:36:10-05:00</updated>
+            <summary>
+                <![CDATA[
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos fuga, consequuntur obcaecati et ipsum iste omnis, libero saepe repudiandae facere provident excepturi iure neque? Maiores quam esse veniam reprehenderit. Quo?
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <div>
+<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos fuga, consequuntur obcaecati et ipsum iste omnis, libero saepe repudiandae facere provident excepturi iure neque? Maiores quam esse veniam reprehenderit. Quo?</div>
+</div>
+            ]]>
+        </content>
+    </entry>
 </feed>
