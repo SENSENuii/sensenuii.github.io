@@ -100,7 +100,7 @@ html {
         font-size: 1.2rem; } }
 
 body {
-  background: rgb(58, 58, 58);
+  background: #FFFFFF;
   color: var(--text-color);
   font-family: var(--body-font);
   font-weight: 400;
@@ -1434,7 +1434,7 @@ textarea {
     padding: 0 2.91429rem; } }
 
 .u-header {
-  background: rgb(49, 49, 49);
+  background: #FFFFFF;
   border-radius: var(--border-radius);
   padding: 1.45714rem 0.72857rem 0;
   position: relative; }
